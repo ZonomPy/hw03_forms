@@ -1,17 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import PostForm
 from .models import Group, Post, User
-
-POSTS_NUMBER: int = 10
-
-
-def paginator_func(posts, request):
-    paginator = Paginator(posts, POSTS_NUMBER)
-    page_number = request.GET.get("page")
-    return paginator.get_page(page_number)
+from .utils import paginator_func
 
 
 def index(request):
